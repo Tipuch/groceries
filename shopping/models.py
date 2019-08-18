@@ -32,7 +32,7 @@ class Product(models.Model):
 
 class ProductListing(models.Model):
     price_kg = models.DecimalField(_('price per kilogram'), max_digits=15, decimal_places=2)
-    price_l = models.DecimalField(_('price per liter'), max_digits=15, decimal_places=2)
+    price_l = models.DecimalField(_('price per liter'), max_digits=15, decimal_places=2, blank=True, null=True)
     product = models.ForeignKey('Product', verbose_name=_('product'),
                                 related_name='product_listings', on_delete=models.CASCADE)
     shop = models.ForeignKey('Shop', verbose_name=_('product'),
@@ -50,4 +50,6 @@ class ProductListing(models.Model):
 
     @property
     def price_gal(self):
+        if not self.price_l:
+            return None
         return self.price_l / Decimal('0.26417')

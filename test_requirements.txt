@@ -1,0 +1,4 @@
+bandit==1.6.2
+flake8==3.7.8
+sphinx==2.1.2
+xenon==0.5.5

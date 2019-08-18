@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from shopping.views import PriceHelperView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('price-helper/', PriceHelperView.as_view(), name='price_helper'),
 ]

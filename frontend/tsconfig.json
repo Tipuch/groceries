@@ -12,6 +12,7 @@
     // Include module source maps for debugging
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "typeRoots": ["node_modules/@types", "custom_typings"]
+    "typeRoots": ["node_modules/@types", "custom_typings"],
+    "moduleResolution": "node"
   }
 }

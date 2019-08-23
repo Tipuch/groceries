@@ -25,23 +25,11 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='VegetableSpecies',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=150, verbose_name='name')),
-                ('is_fruit', models.BooleanField(default=False)),
-            ],
-            options={
-                'index_together': {('name', 'is_fruit')},
-            },
-        ),
-        migrations.CreateModel(
             name='Vegetable',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=150, verbose_name='name')),
                 ('is_fruit', models.BooleanField(default=False)),
-                ('species', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='shopping.VegetableSpecies', verbose_name='species')),
             ],
             options={
                 'index_together': {('name', 'is_fruit')},

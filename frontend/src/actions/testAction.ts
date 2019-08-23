@@ -5,4 +5,13 @@ interface TestUserAction {
     };
 }
 
-type TestAction = TestUserAction
+export type TestAction = TestUserAction
+
+export function changeUser(user: string) {
+    return {
+        type: "TEST_USER",
+        payload: {
+            user: user
+        }
+    }
+}

@@ -1,4 +1,17 @@
-import {createStore} from "redux";
-import reducer from "./reducers";
+import { createStore, Reducer } from 'redux';
+import reducer from './reducers';
 
-export default createStore(reducer);
+export interface GlobalStoreState {
+    shopping: {
+        shoppingList: string[];
+    };
+}
+
+const initialState = {
+    shopping: {
+        shoppingList: <string[]>[]
+    }
+};
+
+let store = createStore(reducer, initialState as GlobalStoreState);
+export default store;

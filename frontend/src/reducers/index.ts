@@ -1,7 +1,6 @@
-import { combineReducers } from "redux";
-
-import {testReducer} from "./testReducer";
+import { combineReducers } from 'redux';
+import { shoppingListReducer } from './shoppingReducer';
 
 export default combineReducers({
-    test: testReducer
+    shopping: shoppingListReducer
 });

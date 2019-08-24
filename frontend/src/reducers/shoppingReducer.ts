@@ -1,9 +1,5 @@
 import { ShoppingAction } from '../actions/shoppingAction';
 
-export interface ShoppingState {
-    shoppingList: string[];
-}
-
 export const shoppingListReducer = (
     state = {
         shoppingList: <string[]>[]

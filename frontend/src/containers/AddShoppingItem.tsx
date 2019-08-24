@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addShoppingItem, ShoppingAction } from '../actions/shoppingAction';
+import {addShoppingItem, AddShoppingItemAction, ShoppingAction} from '../actions/shoppingAction';
 
 interface AddShoppingItemProps {
-    addShoppingItem: (item: string) => ShoppingAction;
+    addShoppingItem: (item: string) => AddShoppingItemAction;
 }
 
 interface AddShoppingItemState {

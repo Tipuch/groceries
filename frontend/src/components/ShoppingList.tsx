@@ -1,16 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { GlobalStoreState } from '../store';
+import {ShoppingItem} from "./ShoppingItem";
+import ShoppingItemComponent from "./ShoppingItem";
 
 interface shoppingListProps {
-    shoppingList: string[];
+    shoppingList: ShoppingItem[];
 }
 
 const ShoppingList = (state: shoppingListProps) => (
     <ul>
         {state.shoppingList && state.shoppingList.length
-            ? state.shoppingList.map((item: string, index: number) => {
-                  return <li>{item}</li>;
+            ? state.shoppingList.map((item: ShoppingItem, index: number) => {
+                  return <ShoppingItemComponent {...item} />;
               })
             : 'No items'}
     </ul>

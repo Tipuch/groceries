@@ -1,34 +1,57 @@
+import api from '../index';
 import React from 'react';
-import { connect } from 'react-redux';
-import {addShoppingItem, AddShoppingItemAction, ShoppingAction} from '../actions/shoppingAction';
+import {connect} from 'react-redux';
+import {addShoppingItem, AddShoppingItemAction} from '../actions/shoppingAction';
+import AsyncSelect from 'react-select/async';
 
 interface AddShoppingItemProps {
     addShoppingItem: (item: string) => AddShoppingItemAction;
 }
 
 interface AddShoppingItemState {
-    input: string;
+    vegetableOption: VegetableOption | null;
+}
+
+interface VegetableOption {
+    id: number;
+    name: string;
+    is_fruit: boolean;
+}
+
+function loadVegetables(inputValue: string) {
+    return api.get(`shopping/vegetables/?q=${inputValue}`)
+        .then(res => {
+            console.log(res.data.data);
+            return res.data.data;
+        });
 }
 
 class AddShoppingItem extends React.Component<AddShoppingItemProps, AddShoppingItemState> {
     constructor(props: AddShoppingItemProps) {
         super(props);
-        this.state = { input: '' };
+        this.state = {vegetableOption: null};
     }
 
-    updateInput = (input: string) => {
-        this.setState({ input });
+    updateInput = (vegetableOption: VegetableOption) => {
+        this.setState({ vegetableOption });
+        return vegetableOption;
     };
 
     handleAddShoppingItem = () => {
-        this.props.addShoppingItem(this.state.input);
-        this.setState({ input: '' });
+        this.props.addShoppingItem(this.state.vegetableOption.name);
+        this.setState({vegetableOption: null});
     };
 
     render() {
         return (
             <div>
-                <input onChange={e => this.updateInput(e.target.value)} value={this.state.input} />
+                <AsyncSelect
+                    value={this.state.vegetableOption} matchPos="any"
+                    getOptionValue={(option: VegetableOption) => {return option.id.toString()}}
+                    getOptionLabel={(option: VegetableOption) => {return option.name}}
+                    defaultOptions={true}
+                    onChange={(value: VegetableOption) => this.updateInput(value)}
+                    loadOptions={loadVegetables} cacheOptions={true}/>
                 <button className="add-shopping-item" onClick={this.handleAddShoppingItem}>
                     Add Shopping Item
                 </button>
@@ -39,5 +62,5 @@ class AddShoppingItem extends React.Component<AddShoppingItemProps, AddShoppingI
 
 export default connect(
     null,
-    { addShoppingItem }
+    {addShoppingItem}
 )(AddShoppingItem);

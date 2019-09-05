@@ -11,7 +11,7 @@ export const shoppingListReducer = (
     switch (action.type) {
         case 'ADD_SHOPPING_ITEM': {
             const newItem = {name: action.payload.item, id: state.nextShoppingItemId};
-            return { ...state, nextId: state.nextShoppingItemId + 1, shoppingList: [...state.shoppingList, newItem] };
+            return { ...state, nextShoppingItemId: state.nextShoppingItemId + 1, shoppingList: [...state.shoppingList, newItem] };
         }
         case 'REMOVE_SHOPPING_ITEM': {
             let newShoppingList = [];

@@ -12,6 +12,7 @@ services:
       - POSTGRES_PASSWORD
       - POSTGRES_DB
       - SECRET_KEY
+      - DJANGO_SETTINGS_MODULE=groceries.development
     depends_on:
       db:
         condition: service_healthy

@@ -12,7 +12,7 @@ const ShoppingList = (state: shoppingListProps) => (
     <ul>
         {state.shoppingList && state.shoppingList.length
             ? state.shoppingList.map((item: ShoppingItem, index: number) => {
-                  return <ShoppingItemComponent {...item} />;
+                  return <ShoppingItemComponent key={item.id} {...item} />;
               })
             : 'No items'}
     </ul>

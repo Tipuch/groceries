@@ -5,7 +5,7 @@ import {addShoppingItem, AddShoppingItemAction} from '../actions/shoppingAction'
 import AsyncSelect from 'react-select/async';
 
 interface AddShoppingItemProps {
-    addShoppingItem: (item: string) => AddShoppingItemAction;
+    addShoppingItem: (item: string, id: number) => AddShoppingItemAction;
 }
 
 interface AddShoppingItemState {
@@ -38,7 +38,7 @@ class AddShoppingItem extends React.Component<AddShoppingItemProps, AddShoppingI
     };
 
     handleAddShoppingItem = () => {
-        this.props.addShoppingItem(this.state.vegetableOption.name);
+        this.props.addShoppingItem(this.state.vegetableOption.name, this.state.vegetableOption.id);
         this.setState({vegetableOption: null});
     };
 

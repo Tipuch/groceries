@@ -4,14 +4,18 @@ import {ShoppingItem} from "../components/ShoppingItem";
 export const shoppingListReducer = (
     state = {
         shoppingList: <ShoppingItem[]>[],
-        nextShoppingItemId: 1
     },
     action: ShoppingAction
 ) => {
     switch (action.type) {
         case 'ADD_SHOPPING_ITEM': {
-            const newItem = {name: action.payload.item, id: state.nextShoppingItemId};
-            return { ...state, nextShoppingItemId: state.nextShoppingItemId + 1, shoppingList: [...state.shoppingList, newItem] };
+            const newItem = {name: action.payload.item, id: action.payload.id};
+            // we don't want to have duplicates, so we ignore changes if it's the same item.
+            const index = state.shoppingList.findIndex((item) => item.id === newItem.id);
+            if (index === -1) {
+                return { ...state, shoppingList: [...state.shoppingList, newItem] };
+            }
+            return { ...state }
         }
         case 'REMOVE_SHOPPING_ITEM': {
             let newShoppingList = [];
@@ -23,5 +27,5 @@ export const shoppingListReducer = (
             return { ...state, shoppingList: newShoppingList };
         }
     }
-    return state;
+    return { ...state };
 };

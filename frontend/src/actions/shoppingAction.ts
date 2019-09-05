@@ -2,6 +2,7 @@ export interface AddShoppingItemAction {
     type: 'ADD_SHOPPING_ITEM';
     payload: {
         item: string;
+        id: number;
     };
 }
 
@@ -14,11 +15,12 @@ export interface RemoveShoppingItemAction {
 
 export type ShoppingAction = RemoveShoppingItemAction | AddShoppingItemAction;
 
-export function addShoppingItem(item: string) {
+export function addShoppingItem(item: string, id: number) {
     return {
         type: 'ADD_SHOPPING_ITEM',
         payload: {
-            item: item
+            item: item,
+            id: id
         }
     };
 }

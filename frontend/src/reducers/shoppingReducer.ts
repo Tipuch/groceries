@@ -9,7 +9,7 @@ export const shoppingListReducer = (
 ) => {
     switch (action.type) {
         case 'ADD_SHOPPING_ITEM': {
-            const newItem = {name: action.payload.item, id: action.payload.id};
+            const newItem = { ...action.payload.item };
             // we don't want to have duplicates, so we ignore changes if it's the same item.
             const index = state.shoppingList.findIndex((item) => item.id === newItem.id);
             if (index === -1) {

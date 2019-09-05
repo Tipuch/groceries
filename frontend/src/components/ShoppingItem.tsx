@@ -5,12 +5,14 @@ import {removeShoppingItem, RemoveShoppingItemAction} from '../actions/shoppingA
 interface ShoppingItemProps {
     id: number;
     name: string;
+    is_fruit: boolean;
     removeShoppingItem: (id: number) => RemoveShoppingItemAction;
 }
 
 export interface ShoppingItem {
     id: number;
     name: string;
+    is_fruit: boolean;
 }
 
 class ShoppingItemComponent extends React.Component<ShoppingItemProps, null> {
@@ -25,9 +27,9 @@ class ShoppingItemComponent extends React.Component<ShoppingItemProps, null> {
     render() {
         return (
             <li key={this.props.id}>
-                <b>{this.props.name}</b>   <i>{this.props.id}</i>
+                <b>{this.props.name}</b>
                 <button className="remove-shopping-item" onClick={this.handleRemoveShoppingItem}>
-                    Remove Shopping Item
+                    X
                 </button>
             </li>
         );

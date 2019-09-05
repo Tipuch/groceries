@@ -3,25 +3,19 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {addShoppingItem, AddShoppingItemAction} from '../actions/shoppingAction';
 import AsyncSelect from 'react-select/async';
+import {ShoppingItem} from "../components/ShoppingItem";
 
 interface AddShoppingItemProps {
-    addShoppingItem: (item: string, id: number) => AddShoppingItemAction;
+    addShoppingItem: (item: ShoppingItem) => AddShoppingItemAction;
 }
 
 interface AddShoppingItemState {
-    vegetableOption: VegetableOption | null;
-}
-
-interface VegetableOption {
-    id: number;
-    name: string;
-    is_fruit: boolean;
+    vegetableOption: ShoppingItem | null;
 }
 
 function loadVegetables(inputValue: string) {
     return api.get(`shopping/vegetables/?q=${inputValue}`)
         .then(res => {
-            console.log(res.data.data);
             return res.data.data;
         });
 }
@@ -32,13 +26,13 @@ class AddShoppingItem extends React.Component<AddShoppingItemProps, AddShoppingI
         this.state = {vegetableOption: null};
     }
 
-    updateInput = (vegetableOption: VegetableOption) => {
+    updateInput = (vegetableOption: ShoppingItem) => {
         this.setState({ vegetableOption });
         return vegetableOption;
     };
 
     handleAddShoppingItem = () => {
-        this.props.addShoppingItem(this.state.vegetableOption.name, this.state.vegetableOption.id);
+        this.props.addShoppingItem(this.state.vegetableOption);
         this.setState({vegetableOption: null});
     };
 
@@ -47,10 +41,10 @@ class AddShoppingItem extends React.Component<AddShoppingItemProps, AddShoppingI
             <div>
                 <AsyncSelect
                     value={this.state.vegetableOption} matchPos="any"
-                    getOptionValue={(option: VegetableOption) => {return option.id.toString()}}
-                    getOptionLabel={(option: VegetableOption) => {return option.name}}
+                    getOptionValue={(option: ShoppingItem) => {return option.id.toString()}}
+                    getOptionLabel={(option: ShoppingItem) => {return option.name}}
                     defaultOptions={true}
-                    onChange={(value: VegetableOption) => this.updateInput(value)}
+                    onChange={(value: ShoppingItem) => this.updateInput(value)}
                     loadOptions={loadVegetables} cacheOptions={true}/>
                 <button className="add-shopping-item" onClick={this.handleAddShoppingItem}>
                     Add Shopping Item

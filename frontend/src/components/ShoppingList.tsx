@@ -5,21 +5,38 @@ import {ShoppingItem} from "./ShoppingItem";
 import ShoppingItemComponent from "./ShoppingItem";
 
 interface shoppingListProps {
-    shoppingList: ShoppingItem[];
+    fruits: ShoppingItem[];
+    vegetables: ShoppingItem[];
 }
 
 const ShoppingList = (state: shoppingListProps) => (
-    <ul>
-        {state.shoppingList && state.shoppingList.length
-            ? state.shoppingList.map((item: ShoppingItem, index: number) => {
-                  return <ShoppingItemComponent key={item.id} {...item} />;
-              })
-            : 'No items'}
-    </ul>
+    <div>
+        <h3>Fruits</h3>
+        <ul>
+            {state.fruits && state.fruits.length
+                ? state.fruits.map((item: ShoppingItem, _index: number) => {
+                    return <ShoppingItemComponent key={item.id} {...item} />;
+                  })
+                : 'No fruits'}
+        </ul>
+        <h3>Vegetables</h3>
+        <ul>
+            {state.vegetables && state.vegetables.length
+                ? state.vegetables.map((item: ShoppingItem, _index: number) => {
+                    return <ShoppingItemComponent key={item.id} {...item} />;
+                  })
+                : 'No vegetables'}
+        </ul>
+    </div>
 );
 
 const mapStateToProps = (state: GlobalStoreState) => {
-    return { shoppingList: state.shopping.shoppingList };
+    const fruits = state.shopping.shoppingList.filter((item: ShoppingItem) => item.is_fruit);
+    const vegetables = state.shopping.shoppingList.filter((item: ShoppingItem) => !item.is_fruit);
+    return {
+        fruits: fruits,
+        vegetables: vegetables,
+    };
 };
 
 export default connect(mapStateToProps)(ShoppingList);

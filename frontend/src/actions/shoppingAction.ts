@@ -1,4 +1,4 @@
-import {ShoppingItem} from "../components/ShoppingItem";
+import { ShoppingItem } from '../components/ShoppingItem';
 
 export interface AddShoppingItemAction {
     type: 'ADD_SHOPPING_ITEM';
@@ -20,7 +20,7 @@ export function addShoppingItem(item: ShoppingItem) {
     return {
         type: 'ADD_SHOPPING_ITEM',
         payload: {
-            item: item,
+            item: item
         }
     };
 }

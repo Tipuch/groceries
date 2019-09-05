@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { GlobalStoreState } from '../store';
-import {ShoppingItem} from "./ShoppingItem";
-import ShoppingItemComponent from "./ShoppingItem";
+import { ShoppingItem } from './ShoppingItem';
+import ShoppingItemComponent from './ShoppingItem';
 
 interface shoppingListProps {
     fruits: ShoppingItem[];
@@ -15,7 +15,7 @@ const ShoppingList = (state: shoppingListProps) => (
         <ul>
             {state.fruits && state.fruits.length
                 ? state.fruits.map((item: ShoppingItem, _index: number) => {
-                    return <ShoppingItemComponent key={item.id} {...item} />;
+                      return <ShoppingItemComponent key={item.id} {...item} />;
                   })
                 : 'No fruits'}
         </ul>
@@ -23,7 +23,7 @@ const ShoppingList = (state: shoppingListProps) => (
         <ul>
             {state.vegetables && state.vegetables.length
                 ? state.vegetables.map((item: ShoppingItem, _index: number) => {
-                    return <ShoppingItemComponent key={item.id} {...item} />;
+                      return <ShoppingItemComponent key={item.id} {...item} />;
                   })
                 : 'No vegetables'}
         </ul>
@@ -35,7 +35,7 @@ const mapStateToProps = (state: GlobalStoreState) => {
     const vegetables = state.shopping.shoppingList.filter((item: ShoppingItem) => !item.is_fruit);
     return {
         fruits: fruits,
-        vegetables: vegetables,
+        vegetables: vegetables
     };
 };
 

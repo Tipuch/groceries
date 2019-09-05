@@ -6,14 +6,13 @@ import './index.css';
 import App from './components/App';
 import store from './store';
 
-
 export default axios.create({
-   baseURL: `http://localhost:8000/`
+    baseURL: `http://localhost:8000/`
 });
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById('root')
 );

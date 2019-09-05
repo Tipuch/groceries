@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {removeShoppingItem, RemoveShoppingItemAction} from '../actions/shoppingAction';
+import { removeShoppingItem, RemoveShoppingItemAction } from '../actions/shoppingAction';
 
 interface ShoppingItemProps {
     id: number;
@@ -35,7 +35,6 @@ class ShoppingItemComponent extends React.Component<ShoppingItemProps, null> {
         );
     }
 }
-
 
 export default connect(
     null,

@@ -6,11 +6,11 @@ import ShoppingList from './ShoppingList';
 
 function App() {
     return (
-      <div className="App">
-          <h2>Shopping List</h2>
-          <AddShoppingItem />
-          <ShoppingList />
-      </div>
+        <div className="App">
+            <h2>Shopping List</h2>
+            <AddShoppingItem />
+            <ShoppingList />
+        </div>
     );
 }
 

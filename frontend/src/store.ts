@@ -1,6 +1,6 @@
 import { createStore, Reducer } from 'redux';
 import reducer from './reducers';
-import {ShoppingItem} from "./components/ShoppingItem";
+import { ShoppingItem } from './components/ShoppingItem';
 
 export interface GlobalStoreState {
     shopping: {

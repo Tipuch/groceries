@@ -14,7 +14,15 @@ export interface RemoveShoppingItemAction {
     };
 }
 
-export type ShoppingAction = RemoveShoppingItemAction | AddShoppingItemAction;
+export interface SaveShoppingItemsAction {
+    type: 'SAVE_SHOPPING_ITEMS';
+}
+
+export interface LoadShoppingItemsAction {
+    type: 'LOAD_SHOPPING_ITEMS';
+}
+
+export type ShoppingAction = RemoveShoppingItemAction | AddShoppingItemAction | SaveShoppingItemsAction | LoadShoppingItemsAction;
 
 export function addShoppingItem(item: ShoppingItem) {
     return {

@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { removeShoppingItem, RemoveShoppingItemAction } from '../actions/shoppingAction';
+import {removeShoppingItem, RemoveShoppingItemAction, SaveShoppingItemsAction} from '../actions/shoppingAction';
 
 interface ShoppingItemProps {
     id: number;
     name: string;
     is_fruit: boolean;
     removeShoppingItem: (id: number) => RemoveShoppingItemAction;
+    saveShoppingItems: () => SaveShoppingItemsAction;
 }
 
 export interface ShoppingItem {
@@ -22,6 +23,7 @@ class ShoppingItemComponent extends React.Component<ShoppingItemProps, null> {
 
     handleRemoveShoppingItem = () => {
         this.props.removeShoppingItem(this.props.id);
+        this.props.saveShoppingItems();
     };
 
     render() {
@@ -38,5 +40,6 @@ class ShoppingItemComponent extends React.Component<ShoppingItemProps, null> {
 
 export default connect(
     null,
-    { removeShoppingItem }
+    { removeShoppingItem: removeShoppingItem,
+    saveShoppingItems: () => {return {type: "SAVE_SHOPPING_ITEMS"}}}
 )(ShoppingItemComponent);

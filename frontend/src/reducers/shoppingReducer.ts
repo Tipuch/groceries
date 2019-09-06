@@ -26,6 +26,12 @@ export const shoppingListReducer = (
             }
             return { ...state, shoppingList: newShoppingList };
         }
+        case 'LOAD_SHOPPING_ITEMS': {
+            return { ...state }
+        }
+        case 'SAVE_SHOPPING_ITEMS': {
+            return { ...state }
+        }
     }
     return { ...state };
 };

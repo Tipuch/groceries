@@ -1,12 +1,13 @@
 import api from '../index';
 import React from 'react';
 import { connect } from 'react-redux';
-import { addShoppingItem, AddShoppingItemAction } from '../actions/shoppingAction';
+import {addShoppingItem, AddShoppingItemAction, SaveShoppingItemsAction} from '../actions/shoppingAction';
 import AsyncSelect from 'react-select/async';
 import { ShoppingItem } from '../components/ShoppingItem';
 
 interface AddShoppingItemProps {
     addShoppingItem: (item: ShoppingItem) => AddShoppingItemAction;
+    saveShoppingItems: () => SaveShoppingItemsAction;
 }
 
 interface AddShoppingItemState {
@@ -31,8 +32,11 @@ class AddShoppingItem extends React.Component<AddShoppingItemProps, AddShoppingI
     };
 
     handleAddShoppingItem = () => {
-        this.props.addShoppingItem(this.state.vegetableOption);
-        this.setState({ vegetableOption: null });
+        if (this.state.vegetableOption !== null) {
+            this.props.addShoppingItem(this.state.vegetableOption);
+            this.setState({ vegetableOption: null });
+            this.props.saveShoppingItems();
+        }
     };
 
     render() {
@@ -62,5 +66,6 @@ class AddShoppingItem extends React.Component<AddShoppingItemProps, AddShoppingI
 
 export default connect(
     null,
-    { addShoppingItem }
+    { addShoppingItem: addShoppingItem,
+    saveShoppingItems: () => {return {type: "SAVE_SHOPPING_ITEMS"}}}
 )(AddShoppingItem);

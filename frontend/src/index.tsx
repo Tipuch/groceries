@@ -10,6 +10,8 @@ export default axios.create({
     baseURL: `http://localhost:8000/`
 });
 
+store.dispatch({type: "LOAD_SHOPPING_ITEMS"});
+
 ReactDOM.render(
     <Provider store={store}>
         <App />

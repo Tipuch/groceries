@@ -1,6 +1,7 @@
-import { createStore, Reducer } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducers';
 import { ShoppingItem } from './components/ShoppingItem';
+import {localStorageMiddleware} from "./middlewares";
 
 export interface GlobalStoreState {
     shopping: {
@@ -16,5 +17,7 @@ const initialState = {
     }
 };
 
-let store = createStore(reducer, initialState as GlobalStoreState);
+const middleware = applyMiddleware(localStorageMiddleware);
+
+let store = createStore(reducer, initialState as GlobalStoreState, middleware);
 export default store;
